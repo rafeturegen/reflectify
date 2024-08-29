@@ -19,7 +19,8 @@ const config = {
     },
     extend: {
       fontFamily:{
-        sevil: ["Sevillana", "cursive"]
+        sevil: ["Sevillana", "cursive"],
+        roboto: ["Roboto", "sans-serif"]
       },
       colors: {
         border: "hsl(var(--border))",
