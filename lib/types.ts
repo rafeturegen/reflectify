@@ -1,3 +1,1 @@
-import { links } from "./data";
-
-export type SectionName = (typeof links)[number]["name"];
+type Emotion = 'Joy' | 'Sadness' | 'Anger' | 'Fear' | 'Disgust' | 'Calm' | "Neutral";

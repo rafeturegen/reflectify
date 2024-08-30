@@ -1,4 +1,4 @@
-export const links = [
+export const homeLinks = [
     {
       name: "Home",
       hash: "#home",
@@ -16,3 +16,18 @@ export const links = [
       hash:"#help"  
     }
 ] as const;
+
+export const dashboardLinks = [
+  {
+    name:"Profile",
+    link:"/dasboard/profile"
+  },
+  {
+    name:"Communities",
+    link:"/dasboard/communities"
+  },
+  {
+    name:"Friends",
+    link:"/dasboard/friends"
+  }
+]

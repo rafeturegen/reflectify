@@ -1,5 +1,5 @@
 import { auth } from '@/app/firebase/config'
-import { links } from '@/lib/data'
+import { dashboardLinks } from '@/lib/data'
 import { Separator } from '@radix-ui/react-separator'
 import { signOut } from 'firebase/auth'
 import Link from 'next/link'
@@ -16,9 +16,9 @@ export default function DashboardHeader() {
                     <p className='text-black tracking-wider font-bold text-sm'>reflectify</p>
                 </div>
                 <ul className=' gap-6 hidden md:flex'>
-                    {links.map(link => (
-                        <li className='text-black font-light text-sm tracking-tight' key={link.hash}>
-                            <Link href={link.hash}>{link.name}</Link>
+                    {dashboardLinks.map(link => (
+                        <li className='text-black font-light text-sm tracking-tight' key={link.link}>
+                            <Link href={link.link}>{link.name}</Link>
                         </li>
                     ))}
                 </ul>   

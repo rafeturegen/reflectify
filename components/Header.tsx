@@ -1,4 +1,4 @@
-import { links } from '@/lib/data'
+import { homeLinks } from '@/lib/data'
 import Link from 'next/link'
 import React from 'react'
 import { RiMentalHealthLine } from 'react-icons/ri'
@@ -14,7 +14,7 @@ export default function Header() {
                     <p className='text-black tracking-wider font-bold text-sm'>reflectify</p>
                 </div>
                 <ul className=' gap-6 hidden md:flex'>
-                    {links.map(link => (
+                    {homeLinks.map(link => (
                         <li className='text-black font-light text-sm tracking-tight' key={link.hash}>
                             <Link href={link.hash}>{link.name}</Link>
                         </li>
