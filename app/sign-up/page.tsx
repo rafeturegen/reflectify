@@ -8,24 +8,28 @@ import React, { useState } from 'react'
 import { auth } from '../firebase/config'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export default function page() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+    const router = useRouter()
 
     async function handleSignUp (event:React.FormEvent) {
         event.preventDefault();
         try {
             const res = await createUserWithEmailAndPassword(email, password)
             console.log(res)
-            sessionStorage.setItem('user', "true")
             setEmail('');
             setPassword('')
-    
+            toast.success("Successfully created your account.")
+            router.push("/sign-in")
         } catch(e){
             console.error(e)
+            toast.error("Couldn't sign up. Please try again.")
         }
     };
   return (
