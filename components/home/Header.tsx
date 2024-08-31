@@ -2,7 +2,7 @@ import { homeLinks } from '@/lib/data'
 import Link from 'next/link'
 import React from 'react'
 import { RiMentalHealthLine } from 'react-icons/ri'
-import { Separator } from './ui/separator'
+import { Separator } from '../ui/separator'
 
 export default function Header() {
   return (

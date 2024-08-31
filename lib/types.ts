@@ -1,1 +1,1 @@
-type Emotion = 'Joy' | 'Sadness' | 'Anger' | 'Fear' | 'Disgust' | 'Calm' | "Neutral";
+export type Emotion = 'Joy' | 'Sadness' | 'Anger' | 'Fear' | 'Disgust' | 'Calm' | "Neutral";

@@ -1,3 +1,5 @@
+"use client"
+
 import { auth } from '@/app/firebase/config'
 import { dashboardLinks } from '@/lib/data'
 import { Separator } from '@radix-ui/react-separator'
