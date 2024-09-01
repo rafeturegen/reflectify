@@ -5,11 +5,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Define allowed emotions
 const allowedEmotions = ['Anger', 'Calm', 'Joy', 'Sadness', 'Fear', 'Disgust', 'Neutral'] as const;
 type Emotion = typeof allowedEmotions[number];
 
-export async function analyseJournal(request: Request) {
+export async function POST(request: Request) {
   try {
     const { journalEntry }: { journalEntry: string } = await request.json();
 

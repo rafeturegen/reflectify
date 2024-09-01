@@ -14,11 +14,11 @@ export default function Hero() {
             ))}  
             </div>
             <div>
-                <h1 className='text-7xl font-bold font-roboto text-center md:w-[729px] mx-auto'>Your Path to Mental Clarity</h1>
-                <p className='text-gray-500 text-center md:w-[800px] mx-auto my-5'>Track your mood, reflect on your thoughts, and gain personalized insights with Reflectify, your AI-powered mental wellness journal.</p>
+                <h1 className='text-7xl font-bold font-roboto text-center md:w-[729px] mx-auto text-white'>Your Path to Mental Clarity</h1>
+                <p className='text-gray-400 text-center md:w-[800px] mx-auto my-5'>Track your mood, reflect on your thoughts, and gain personalized insights with Reflectify, your AI-powered mental wellness journal.</p>
                 <div className='flex justify-center gap-4'>
-                    <button className='px-5 py-2 border border-black rounded-[0.35rem] text-sm tracking-tighter hover:text-[#22ad01] hover:border-[#22ad01]'><Link href="#features">Learn More</Link></button>
-                    <button className='px-5 py-2 bg-[#22ad01] text-white rounded-[0.35rem] text-sm tracking-tighter hover:opacity-90'><Link href="/sign-up">Get Started</Link></button>                 
+                    <button className='px-5 py-2 border border-black rounded-[0.35rem] text-sm tracking-tighter hover:text-amber-300 hover:border-amber-300 text-white'><Link href="#features">Learn More</Link></button>
+                    <button className='px-5 py-2 bg-amber-300 text-white rounded-[0.35rem] text-sm tracking-tighter hover:opacity-90'><Link href="/sign-up">Get Started</Link></button>                 
                 </div>
             </div>
         </div>
