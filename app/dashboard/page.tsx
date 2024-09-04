@@ -13,28 +13,36 @@ export default function Home() {
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
+  const [journal, setJournal] = useState<string>("");
   const [emotion, setEmotion] = useState<Emotion>('Neutral');
-  async function analyseJournal(journal:string){
+
+  async function handleJournalSubmit (event:React.FormEvent){
+    event.preventDefault()
     try {
-      const response = await fetch("/api/analyseJournal",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({journalEntry:journal})
-    });
-    if(!response.ok){
-      throw new Error("Failed to analyze journal.")
-    }
-    const data = await response.json();
-    setEmotion(data.moodAnalysis);
+      const response = await fetch("/api/analyseJournal", {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({ journalEntry:journal })
+      })
+
+      if(!response.ok){
+        console.log("Failed to analyze the journal")
+        return;
+      }
+
+      const data = await response.json();
+
+      if(data.moodAnalysis){
+        setEmotion(data.moodAnalysis);
+      }
+
     } catch (error) {
-      console.error('Error fetching mood analysis:', error);
+      console.error("Error:", error)
     }
-    
-    
   }
+  
 
   useEffect(() => {
     if (!loading) {
@@ -49,14 +57,16 @@ export default function Home() {
   if (loading || isCheckingAuth) {
     return <div>Loading...</div>; 
   }
-  console.log({user})
 
   return (
     <main>
       <DashboardHeader />
       <MoodBar emotion={emotion}/>
-      <Journal analyse={analyseJournal}/>
-
+      <Journal 
+        journal={journal} 
+        setJournal={setJournal} 
+        onSubmit={handleJournalSubmit} 
+      />
     </main>
   );
 }

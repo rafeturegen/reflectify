@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Emotion } from "@/lib/types";
 
 interface MoodBarProps {
-    emotion: Emotion; // Define the type of the emotion prop
+    emotion: Emotion; 
   }
 
 export default function MoodBar({emotion}:MoodBarProps){
