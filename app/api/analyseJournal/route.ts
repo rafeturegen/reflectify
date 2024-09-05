@@ -1,3 +1,5 @@
+import connectMongo from '@/lib/connectMongo';
+import ReflectifyJournal from '@/modal/journal';
 import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
 
@@ -10,7 +12,25 @@ type Emotion = typeof allowedEmotions[number];
 
 export async function POST(request: Request) {
   try {
-    const { journalEntry }: { journalEntry: string } = await request.json();
+    const { journalEntry, email }: { journalEntry: string, email:string } = await request.json();
+
+    await connectMongo();
+    const currentDate = new Date().toISOString().split("T")[0];
+    console.log(currentDate)
+
+    const iJournal = {
+      content:journalEntry,
+      date:currentDate
+    }
+    const updateResult = await ReflectifyJournal.findOneAndUpdate(
+      { email },
+      { $push: { journal: iJournal }},
+      { new: true, upsert:true }
+    )
+
+    if (!updateResult) {
+      return NextResponse.json({ error: 'User not found or failed to update journals.' }, { status: 404 });
+    }
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",

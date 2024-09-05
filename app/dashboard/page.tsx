@@ -16,6 +16,33 @@ export default function Home() {
   const [journal, setJournal] = useState<string>("");
   const [emotion, setEmotion] = useState<Emotion>('Neutral');
 
+  useEffect(() => {
+    async function fetchTodayJournal(){
+      if(user){
+        const today = new Date();
+        try {
+          const response = await fetch("/api/getJournal", {
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json",
+            },
+            body:JSON.stringify({email:user?.email, dateComing:today.toISOString() })
+          })
+          
+          if(response.ok){
+            const data = await response.json();
+            console.log(data.journal)
+            setJournal(data.journal)
+          }
+        } catch (error) {
+          console.error("Fetching error:", error);
+          return;
+        }
+      }
+    }
+    fetchTodayJournal();
+  }, [user])
+
   async function handleJournalSubmit (event:React.FormEvent){
     event.preventDefault()
     try {
@@ -24,7 +51,7 @@ export default function Home() {
         headers:{
           "Content-Type":"application/json"
         },
-        body:JSON.stringify({ journalEntry:journal })
+        body:JSON.stringify({ journalEntry:journal, email:user?.email })
       })
 
       if(!response.ok){

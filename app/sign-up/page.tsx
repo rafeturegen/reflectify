@@ -22,11 +22,23 @@ export default function page() {
         event.preventDefault();
         try {
             const res = await createUserWithEmailAndPassword(email, password)
-            console.log(res)
-            setEmail('');
-            setPassword('')
-            toast.success("Successfully created your account.")
-            router.push("/sign-in")
+            if(res){
+                const response = await fetch('/api/createUser', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+        
+                if (!response.ok) {
+                    throw new Error('Failed to create user in the database.');
+                }
+                setEmail('');
+                setPassword('');
+                toast.success("Successfully created your account.");
+                router.push("/sign-in");
+            }
         } catch(e){
             console.error(e)
             toast.error("Couldn't sign up. Please try again.")

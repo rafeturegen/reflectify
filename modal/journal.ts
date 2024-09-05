@@ -17,7 +17,7 @@ const iJournalSchema = new Schema({
 
 const journalSchema = new Schema({
     email:{type:String, required:true, unique:true},
-    journal:[iJournalSchema]
+    journals:[iJournalSchema]
 })
 
 const ReflectifyJournal = models.reflectifyJournal || model<Journal>("reflectifyJournal", journalSchema);
